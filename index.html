@@ -13,14 +13,14 @@
   <header>
     <nav>
       <h1><a tabindex="0" href="/">Restaurant Reviews</a></h1>
-      <h6><a href="#ToFilterResults" class="skipMap">Go To Next Section</a><h6>
+      <h6><a href="#ToFilterResults" class="skipMap">Go To Next Section</a></h6>
 
     </nav>
   </header>
 
   <main id="maincontent">
     <section id="map-container">
-      <div id="map"></div>
+      <div id="map" aria-label="Location" role="Application"></div>
     </section>
     <section>
       <div class="filter-options">
@@ -38,6 +38,7 @@
 
   <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
+  <script type="application/javascript" charset="utf-8" src="js/RegisterServiceWorker.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABoWbagytip4MZGTD_5MIjlD1MzI393aw&libraries=places&callback=initMap"></script>
 
 

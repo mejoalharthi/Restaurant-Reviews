@@ -1,8 +1,9 @@
-let static_cacheName = "Restaurant-static-v1";
+let cacheNamestatic = 'Restaurant-v1';
 
-self.addEventLeistener('install', function(event) {
+self.addEventListener('install', function(event) {
+
   event.waitUntil(
-    caches.open(static_cacheName).then(function(cache) {
+    caches.open(cacheNamestatic).then(function(cache) {
       return cache.addAll([
         '/',
         'css/styles.css',
@@ -28,23 +29,27 @@ self.addEventLeistener('install', function(event) {
   );
 });
 
+
 self.addEventListener('activate', function(event) {
   event.waitUntil(
-    caches.keys().then(function(cacheName) {
+    caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.filter(function(cacheName) {
           return cacheName.startsWith('Restaurant-') &&
-            cacheName != static_cacheName;
+            cacheName != cacheNamestatic;
         }).map(function(cacheName) {
-          return cache.delete(cacheName);
+          return caches.delete(cacheName);
         })
       );
     })
   );
 });
-self.addEventListener('fetch', function(event) {
+
+
+self.addEventListener("fetch", function(event) {
   event.respondWith(
-    caches.match(event.request).then(function(response) {
+    caches.match(event.request)
+    .then(function(response) {
       return response || fetch(event.request);
     })
   );
